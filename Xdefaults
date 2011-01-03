@@ -1,0 +1,32 @@
+urxvt*termName:     xterm
+floatterminal*termName:	xterm
+
+! rxvt-unicode
+URxvt.urgentOnBell:  true
+
+! xterm
+XTerm*bellIsUrgent:  true
+
+
+*perl-ext-common:  default,matcher
+*urlLauncher:      firefox
+*.matcher.button:   1
+*.matcher.pattern.1:\\bwww\\.[\\w-]+\\.[\\w./?&@#-åäöÅÄÖ]]*[\\w/-]
+
+
+#*inheritPixmap: True
+*transparent: True
+#*tintColor: green
+*shading: 50
+*fading: 20
+*scrollBar: False
+*cursorColor: 15
+*font: 6x10
+*boldFont: 6x10
+*italicFont: 6x10
+*boldItalicFont: 6x10
+*foreground: 15
+#*background: 0
+*depth: 32
+*background: rgba:0000/0000/0000/7777
+*cursorColor2: 0

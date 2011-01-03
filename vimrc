@@ -1,0 +1,123 @@
+" Daethorians vim settings
+" Somewhat based on MetaCosms vimrc (http://www.vi-improved.org/vimrc.php)
+
+" Basics {
+set nocompatible " get out of horrible vi-compatible mode
+set background=dark " we are using a dark background
+syntax on " syntax highlighting on
+" }
+" General {
+set history=100 " How many lines of history to remember
+set viminfo+=! " make sure it can save viminfo
+set iskeyword+=_,$,@,%,# " none of these should be word dividers, so make them not be
+set nostartofline " leave my cursor where it was
+set backspace=indent,eol,start
+set gdefault " always replace everything when substituting
+" }
+" Files/Backups {
+set backup " make backup file
+set backupdir=~/.vim/bk " where to put backup file
+set directory=~/.vim/tmp " directory is the directory for temp file
+" }
+" Vim UI {
+set showcmd " show the command being typed
+set wildmenu " turn on wild menu
+set wildmode=list:longest " turn on wild menu in special format (long format)
+set wildignore=*.o,*.obj,*.bak,*.exe,*.pyc,*.swp,*.jpg,*.gif,*.png " ignore some formats
+set ruler " Always show current positions along the bottom
+set cmdheight=1 " the command bar is 1 high
+set number " turn on line numbers
+set lazyredraw " do not redraw while running macros (much faster) (LazyRedraw)
+set noerrorbells " don't make noise
+set laststatus=2
+" }
+" Visual Cues {
+set showmatch " show matching brackets
+set nohlsearch " do not highlight searched for phrases
+set incsearch " BUT do highlight as you type you search phrase
+set scrolloff=5 " Keep 5 lines (top/bottom) for scope
+set sidescrolloff=5 " Keep 5 lines at the side
+set novisualbell " don't blink
+set list
+set listchars=trail:-,tab:\>\ 
+" }
+" Indent Related {
+set nosmartindent " smartindent (filetype indenting instead)
+set autoindent " autoindent (should be overwrote by cindent or filetype indent)
+set cindent " do c-style indenting
+set softtabstop=4 " unify
+set shiftwidth=4 " unify
+set tabstop=4 " real tabs should be 4, but they will show with set list on
+set copyindent " but above all -- follow the conventions laid before us
+set noexpandtab " do not use spaces
+filetype plugin indent on " load filetype plugins and indent settings
+" }
+" Text Formatting/Layout {
+set formatoptions=tcrq " See Help (complex)
+set shiftround " when at 3 spaces, and I hit > ... go to 4, not 5
+set nowrap " do not wrap line
+set preserveindent " but above all -- follow the conventions laid before us
+set ignorecase " case insensitive by default
+set smartcase " if there are caps, go case-sensitive
+set completeopt=menu,longest,preview " improve the way autocomplete works
+" }
+" Folding {
+set foldenable " Turn on folding
+set foldmarker={,} " Fold C style code (only use this as default if you use a high foldlevel)
+set foldcolumn=1 " Give 1 column for fold markers
+set foldmethod=marker " Fold on the marker
+set foldlevel=0 " Open files with folds closed
+set foldopen=search " open folds when you search into them
+set foldopen=undo " open folds when you undo stuff
+function! SimpleFoldText() " {
+	return getline(v:foldstart).' '
+endfunction " }
+set foldtext=SimpleFoldText() " Custom fold text
+" }
+
+map <F12> ggg?G " ROT13 <3
+noremap <F2> <esc>:syntax sync fromstart<cr>
+noremap <F3> <esc>:set nolist wrap lbr syntax=none<cr>
+noremap <F4> <esc>:set syntax=css<cr>
+
+nmap ,s :source $MYVIMRC<CR>
+nmap ,v :vs $MYVIMRC<CR>
+nmap ,t :NERDTree<CR>
+
+:au Filetype bash,sh set foldmarker={{{,}}}
+:au Filetype txt,log set nolist wrap lbr syntax=none
+colorscheme ninjaloot
+
+
+" Paste Mode On/Off
+map <F11> :call Paste_on_off()<CR>
+set pastetoggle=<F11>
+let paste_mode = 0 " 0 = normal, 1 = paste
+func! Paste_on_off()
+	if g:paste_mode == 0
+		set paste
+		let g:paste_mode = 1
+		echo "paste mode on"
+	else
+		set nopaste
+		let g:paste_mode = 0
+		echo "paste mode off"
+	endif
+	return
+endfunc
+
+map <F10> :call Toggle_Folds()<CR>
+"set foldtoggle=<F10>
+let folding_mode = 1
+func! Toggle_Folds()
+	if g:folding_mode == 1
+		set nofoldenable
+		let g:folding_mode = 0
+		echo "Toggle Foldings Off"
+	else
+		set foldenable
+		let g:folding_mode = 1
+		echo "Toggle Foldings On"
+	endif
+	return
+endfunc

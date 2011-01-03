@@ -1,0 +1,34 @@
+export PATH=${PATH}:/usr/local/bin:/opt/java/jre/bin/
+export EDITOR="vim"
+export WINEARCH="win32"
+
+eval `keychain -Q --eval --agents ssh id_rsa` &> /dev/null
+clear
+
+# Enhance default commands
+alias ls='ls --color=auto --group-directories-first'
+alias grep='grep --color=auto'
+
+# System and service handling
+if [ $EUID = 0 ] || which sudo &> /dev/null ; then
+	if [ $EUID != 0 ] ; then
+		alias reboot='sudo reboot' # These are only needed if we are not root
+		alias shutdown='sudo shutdown -h now'
+	fi
+fi
+
+# MPD
+if which mpc &> /dev/null ; then
+	alias np='mpc --format "%artist% #[%album%#] - %title%"' # Now playing
+	alias mps='np toggle' # Stop
+	alias mpl='np playlist'
+	alias mpg='np playlist | grep -i'
+	alias mpag='np listall | grep -i' # grep all
+	alias mpa='mpc add'
+	alias mpx='mpc clear'
+	alias mpll='mpc load' # Playlist load
+	alias mpls='mpx && mpll' # Playlist switch
+	alias mpp='np play'
+	alias mpq="np playlist | grep -E '^>.*' -B 10 -A 10" # Queue
+	alias mpr='np random'
+fi

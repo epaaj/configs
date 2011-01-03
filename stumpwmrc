@@ -1,0 +1,227 @@
+;; vim: set ts=2 filetype=lisp:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;																									;;
+;; .stumpwmrc																				;;
+;; Sane windows management (vim-bindings)						;;
+;;																									;;
+;; Based on .stumpwmrc (2009.08.26) by							;;
+;; trapd00r@trapd00r.se															;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; COLORS(SteelBlue, ForestGreen, SlateGrey
+
+; dump-group-to-file
+; restore-from-file
+
+;-*-lisp-*-
+
+(in-package :stumpwm)
+
+(setf *default-package* :stumpwm)
+
+
+;(load-module "mpd")
+;(load-module "disk")
+;(load "/home/scp1/bin/mpd.lisp")
+(set-prefix-key (kbd "C-f"))
+
+;; Variables
+
+;;(defparameter terminal "exec urxvtc -e screen -dr -X screen zsh && screen -x")
+
+(setf *shell-program* (stumpwm::getenv "SHELL")) ;getenv is not exported
+
+;;(setf *debug-level*   10
+
+
+; ditch the x
+(stumpwm:run-shell-command "xsetroot -cursor_name left_ptr -fg white -bg black")
+
+
+(set-contrib-dir "/usr/share/stumpwm")
+
+(set-font "-xos4-terminus-*-*-*-*-14-*-*-*-*-*-*-*")
+
+
+(setf *mode-line-background-color* "black"
+		*mode-line-foreground-color* "White"
+		*mode-line-border-color* "darkgrey"
+		*mode-line-timeout* 1
+		*mode-line-screen-position* :bottom
+		*window-format* "^B^8*%n%s%m%30t :: ^7*"
+		*group-format* "%t")
+
+
+(setf stumpwm:*screen-mode-line-format*
+		(list "%w | "
+				'(:eval (stumpwm:run-shell-command "date '+w%V\ %a\ %d\ %b\ %H:%M:%S'" t))))
+
+;; Turn on the modeline
+(if (not (head-mode-line (current-head)))
+		(toggle-mode-line (current-screen) (current-head)))
+
+
+; Create groups
+(run-commands "gnewbg 1" "gnewbg 2")
+
+;; Clear rules
+(clear-window-placement-rules)
+
+(define-frame-preference "Default"
+		;; frame raise lock (lock AND raise == jumpto)
+		(0 t   t :class "Namoroka" :instance "Navigator" :role "browser")
+		(0 t   t :class "URxvt" :instance "irssi"))
+
+(define-frame-preference "1"
+		;; frame raise lock (lock AND raise == jumpto)
+		(0 t   t :class "Skype" :instance "skype")
+		(0 t   t :class "URxvt" :instance "SC2"))
+
+(define-frame-preference "2"
+		;; frame raise lock (lock AND raise == jumpto)
+		(0 t   t :class "Linuxdcpp" :instance "linuxdcpp")
+		(0 t   t :class "URxvt" :instance "PMS"))
+
+
+;;;; The Message Window
+(set-fg-color "lightskyblue1")
+(set-bg-color "grey10")
+(set-border-color "lightskyblue4")
+(set-msg-border-width 1)
+
+(setf *maxsize-border-width* 1
+    *normal-border-width* 1
+    *window-border-style* :thin
+    *transient-border-width* 4) ; popups \o/
+
+(setf *message-window-gravity* :top-right
+    *timeout-wait*           10
+    *input-window-gravity*   :top-left)
+
+
+;; Turn of welcome message
+(setf *startup-message* nil)
+
+;; Little helper
+(defun cat (&rest strings) "A shortcut for (concatenate 'string foo bar)."
+		(apply 'concatenate 'string strings))
+
+(defcommand firefox () ()
+		(run-or-raise "firefox" '(:class "Namoroka" :instance "Navigator" :role "browser")))
+
+(defcommand skype () ()
+		(run-or-raise "skype" '(:class "Skype" :instance "skype")))
+
+(defcommand linuxdcpp () ()
+		(run-or-raise "linuxdcpp" '(:class "Linuxdcpp" :instance "linuxdcpp")))
+
+;; INTARNETS
+(defcommand google (s)
+		((:string "Google: "))
+		(check-type s string)
+		(substitute #\+ #\Space s)
+		(run-shell-command (cat "firefox http://www.google.com/search\\?q=" s))
+		(firefox))
+
+(defcommand imdb (s)
+		((:string "IMDB: "))
+		(check-type s string)
+		(substitute #\+ #\Space s)
+		(run-shell-command (cat "firefox http://www.imdb.com/find\\?s=all\\&q=" s))
+		(firefox))
+
+(defcommand wiki (s)
+		((:string "Wikipedia (en): "))
+		(check-type s string)
+		(substitute #\+ #\Space s)
+		(run-shell-command (cat "firefox http://en.wikipedia.org/w/index.php\\?search=" s))
+		(firefox))
+
+;; MPD
+(defparameter *mpd-map*
+		(let ((m (make-sparse-keymap)))
+		(define-key m (kbd "h") "exec mpc prev")
+		(define-key m (kbd "l") "exec mpc next")
+		(define-key m (kbd "m") "exec mpc toggle")
+		(define-key m (kbd "z") "exec mpc random")
+		(define-key m (kbd "SPC") "exec mpc toggle")
+		m))
+
+(define-key *root-map* (kbd "m") '*mpd-map*)
+(define-key *root-map* (kbd "C-m") '*mpd-map*)
+
+;; Volume
+(defcommand volume (v)
+		((:string "vol: "))
+		(check-type v string)
+		(run-shell-command (cat "amixer set PCM " v "%")))
+
+(define-key *root-map* (kbd "v") "volume")
+
+;;;; Windows
+
+(set-focus-color "lightskyblue1")
+(set-unfocus-color "grey20")
+(set-normal-gravity :center)
+(setf *normal-border-width* 1)
+
+(define-key *top-map* (kbd "s-RET") "exec urxvt")
+(define-key *root-map* (kbd "RET") "exec urxvt")
+(define-key *root-map* (kbd "c") "exec urxvt")
+(define-key *root-map* (kbd "u") "uzbl")
+
+;; sane bindings for window management
+(define-key *root-map* (kbd "h") "move-focus left")
+(define-key *root-map* (kbd "j") "move-focus down")
+(define-key *root-map* (kbd "k") "move-focus up")
+(define-key *root-map* (kbd "l") "move-focus right")
+
+(define-key *top-map* (kbd "s-h") "move-focus left")
+(define-key *top-map* (kbd "s-j") "move-focus down")
+(define-key *top-map* (kbd "s-k") "move-focus up")
+(define-key *top-map* (kbd "s-l") "move-focus right")
+
+(define-key *root-map* (kbd "H") "move-window left")
+(define-key *root-map* (kbd "J") "move-window down")
+(define-key *root-map* (kbd "K") "move-window up")
+(define-key *root-map* (kbd "L") "move-window right")
+
+(define-key *top-map* (kbd "s-H") "move-window left")
+(define-key *top-map* (kbd "s-J") "move-window down")
+(define-key *top-map* (kbd "s-K") "move-window up")
+(define-key *top-map* (kbd "s-L") "move-window right")
+
+(define-key *root-map* (kbd "s") "hsplit")
+(define-key *root-map* (kbd "z") "vsplit")
+
+(define-key *top-map* (kbd "s-s") "hsplit")
+(define-key *top-map* (kbd "s-z") "vsplit")
+
+(define-key *root-map* (kbd "x") "exec xlock")
+
+(define-key *top-map* (kbd "s-G") "vgroups")
+
+(define-key *top-map* (kbd "s-Tab") "gnext")
+(define-key *top-map* (kbd "s-ISO_Left_Tab") "gprev")
+(define-key *root-map* (kbd "SPC") "gnext")
+(define-key *root-map* (kbd "C-SPC") "gprev")
+
+(define-key *top-map* (kbd "s-F10") "loadrc")
+
+(define-key *top-map* (kbd "s-f") "firefox")
+
+;; Undefine keys
+
+(undefine-key *root-map* (kbd "C-c"))
+(undefine-key *top-map* (kbd "F10"))
+(undefine-key *top-map* (kbd "F11"))
+(undefine-key *top-map* (kbd "F12"))
+
+(undefine-key *root-map* (kbd "e"))
+(undefine-key *root-map* (kbd "C-e"))
+
+;;; The End
+
+;(define-key *root-map* (kbd "SPC") "exec stumpish echo `mpc --format '%artist% - %title% (%album%)'|head -1`")
+
+; vim: set et,ts=2,sts=2,ft=lisp
