@@ -70,11 +70,13 @@
 (define-frame-preference "Default"
 		;; frame raise lock (lock AND raise == jumpto)
 		(0 t   t :class "Namoroka" :instance "Navigator" :role "browser")
+		(0 t   t :class "Wine" :instance "spotify.exe")
 		(0 t   t :class "URxvt" :instance "irssi"))
 
 (define-frame-preference "1"
 		;; frame raise lock (lock AND raise == jumpto)
 		(0 t   t :class "Skype" :instance "skype")
+		(0 t   t :class "Wine" :instance "SC2.exe")
 		(0 t   t :class "URxvt" :instance "SC2"))
 
 (define-frame-preference "2"
@@ -109,11 +111,23 @@
 (defcommand firefox () ()
 		(run-or-raise "firefox" '(:class "Namoroka" :instance "Navigator" :role "browser")))
 
+(defcommand thunderbird () ()
+		(run-or-raise "thunderbird" '(:class "Lanikai" :instance "Mail")))
+
 (defcommand skype () ()
 		(run-or-raise "skype" '(:class "Skype" :instance "skype")))
 
 (defcommand linuxdcpp () ()
 		(run-or-raise "linuxdcpp" '(:class "Linuxdcpp" :instance "linuxdcpp")))
+
+(defcommand irssi () ()
+		(run-or-raise "urxvt -name irssi" '(:class "URxvt" :instance "irssi")))
+
+(defcommand sc2 () ()
+		(run-or-raise "SC2.sh" '(:class "Wine" :instance "SC2.exe")))
+
+(defcommand spotify () ()
+		(run-or-raise "spotify.sh" '(:class "Wine" :instance "spotify.exe")))
 
 ;; INTARNETS
 (defcommand google (s)
@@ -209,6 +223,12 @@
 (define-key *top-map* (kbd "s-F10") "loadrc")
 
 (define-key *top-map* (kbd "s-f") "firefox")
+(define-key *top-map* (kbd "s-S") "sc2")
+(define-key *top-map* (kbd "s-d") "linuxdcpp")
+(define-key *top-map* (kbd "s-t") "thunderbird")
+(define-key *top-map* (kbd "s-i") "irssi")
+(define-key *top-map* (kbd "s-s") "skype")
+(define-key *top-map* (kbd "s-a") "spotify")
 
 ;; Undefine keys
 

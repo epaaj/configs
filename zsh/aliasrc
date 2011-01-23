@@ -2,8 +2,7 @@ export PATH=${PATH}:/usr/local/bin:/opt/java/jre/bin/
 export EDITOR="vim"
 export WINEARCH="win32"
 
-eval `keychain -Q --eval --agents ssh id_rsa` &> /dev/null
-clear
+eval `keychain --eval --nogui -Q -q id_rsa`
 
 # Enhance default commands
 alias ls='ls --color=auto --group-directories-first'
@@ -19,6 +18,8 @@ fi
 
 # MPD
 if which mpc &> /dev/null ; then
+	export MPD_HOST=localhost
+	export MPD_PORT=6600
 	alias np='mpc --format "%artist% #[%album%#] - %title%"' # Now playing
 	alias mps='np toggle' # Stop
 	alias mpl='np playlist'
