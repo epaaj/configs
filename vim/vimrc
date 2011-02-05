@@ -88,6 +88,9 @@ nmap ,t :NERDTree<CR>
 :au Filetype txt,log set nolist wrap lbr syntax=none
 colorscheme ninjaloot
 
+" Filetypes {
+	au Filetype python set foldmethod=indent expandtab
+" }
 
 " Paste Mode On/Off
 map <F11> :call Paste_on_off()<CR>

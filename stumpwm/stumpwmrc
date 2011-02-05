@@ -62,7 +62,7 @@
 
 
 ; Create groups
-(run-commands "gnewbg 1" "gnewbg 2")
+(run-commands "gnewbg 1" "gnewbg 2" "gnewbg 3")
 
 ;; Clear rules
 (clear-window-placement-rules)
@@ -81,9 +81,12 @@
 
 (define-frame-preference "2"
 		;; frame raise lock (lock AND raise == jumpto)
+		(0 t   t :class "Lanikai" :instance "Mail"))
+
+(define-frame-preference "3"
+		;; frame raise lock (lock AND raise == jumpto)
 		(0 t   t :class "Linuxdcpp" :instance "linuxdcpp")
 		(0 t   t :class "URxvt" :instance "PMS"))
-
 
 ;;;; The Message Window
 (set-fg-color "lightskyblue1")
@@ -128,6 +131,9 @@
 
 (defcommand spotify () ()
 		(run-or-raise "spotify.sh" '(:class "Wine" :instance "spotify.exe")))
+
+(defcommand mplayer () ()
+		(run-or-raise "mplayer" '(:class "MPlayer" :instance "vdpau")))
 
 ;; INTARNETS
 (defcommand google (s)
@@ -229,6 +235,7 @@
 (define-key *top-map* (kbd "s-i") "irssi")
 (define-key *top-map* (kbd "s-s") "skype")
 (define-key *top-map* (kbd "s-a") "spotify")
+(define-key *top-map* (kbd "s-m") "mplayer")
 
 ;; Undefine keys
 
