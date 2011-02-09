@@ -228,6 +228,11 @@
 
 (define-key *top-map* (kbd "s-F10") "loadrc")
 
+(define-key *top-map* (kbd "s-1") "gselect Default")
+(define-key *top-map* (kbd "s-2") "gselect 1")
+(define-key *top-map* (kbd "s-3") "gselect 2")
+(define-key *top-map* (kbd "s-4") "gselect 3")
+
 (define-key *top-map* (kbd "s-f") "firefox")
 (define-key *top-map* (kbd "s-S") "sc2")
 (define-key *top-map* (kbd "s-d") "linuxdcpp")
