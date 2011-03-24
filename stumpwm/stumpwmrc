@@ -69,15 +69,14 @@
 
 (define-frame-preference "Default"
 		;; frame raise lock (lock AND raise == jumpto)
-		(0 t   t :class "Namoroka" :instance "Navigator" :role "browser")
+		(0 t   t :class "Firefox" :instance "Navigator" :role "browser")
 		(0 t   t :class "Wine" :instance "spotify.exe")
 		(0 t   t :class "URxvt" :instance "irssi"))
 
 (define-frame-preference "1"
 		;; frame raise lock (lock AND raise == jumpto)
 		(0 t   t :class "Skype" :instance "skype")
-		(0 t   t :class "Wine" :instance "SC2.exe")
-		(0 t   t :class "URxvt" :instance "SC2"))
+		(0 t   t :class "Wine" :instance "SC2.exe"))
 
 (define-frame-preference "2"
 		;; frame raise lock (lock AND raise == jumpto)
@@ -86,7 +85,7 @@
 (define-frame-preference "3"
 		;; frame raise lock (lock AND raise == jumpto)
 		(0 t   t :class "Linuxdcpp" :instance "linuxdcpp")
-		(0 t   t :class "URxvt" :instance "PMS"))
+		(0 t   t :class "net-pms-PMS" :instance "sun-awt-X11-XFramePeer"))
 
 ;;;; The Message Window
 (set-fg-color "lightskyblue1")
@@ -112,7 +111,7 @@
 		(apply 'concatenate 'string strings))
 
 (defcommand firefox () ()
-		(run-or-raise "firefox" '(:class "Namoroka" :instance "Navigator" :role "browser")))
+		(run-or-raise "firefox" '(:class "Firefox" :instance "Navigator" :role "browser")))
 
 (defcommand thunderbird () ()
 		(run-or-raise "thunderbird" '(:class "Lanikai" :instance "Mail")))
@@ -134,6 +133,9 @@
 
 (defcommand mplayer () ()
 		(run-or-raise "mplayer" '(:class "MPlayer" :instance "vdpau")))
+
+(defcommand PS3MS () ()
+		(run-or-raise "/usr/local/bin/pms-linux-1.20.412/PMS.sh" '(:class "net-pms-PMS" :instance "sun-awt-X11-XFramePeer")))
 
 ;; INTARNETS
 (defcommand google (s)
@@ -241,6 +243,7 @@
 (define-key *top-map* (kbd "s-s") "skype")
 (define-key *top-map* (kbd "s-a") "spotify")
 (define-key *top-map* (kbd "s-m") "mplayer")
+(define-key *top-map* (kbd "s-p") "PS3MS")
 
 ;; Undefine keys
 

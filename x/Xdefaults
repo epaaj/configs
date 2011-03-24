@@ -1,4 +1,4 @@
-urxvt*termName:     xterm
+*termName:     xterm
 floatterminal*termName:	xterm
 
 ! rxvt-unicode
@@ -17,7 +17,7 @@ XTerm*bellIsUrgent:  true
 #*inheritPixmap: True
 *transparent: True
 #*tintColor: green
-*shading: 50
+*shading: 20
 *fading: 20
 *scrollBar: False
 *cursorColor: 15
