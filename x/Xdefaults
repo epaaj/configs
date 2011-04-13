@@ -17,7 +17,7 @@ XTerm*bellIsUrgent:  true
 #*inheritPixmap: True
 *transparent: True
 #*tintColor: green
-*shading: 20
+*shading: 15
 *fading: 20
 *scrollBar: False
 *cursorColor: 15

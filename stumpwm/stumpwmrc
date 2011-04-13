@@ -71,6 +71,8 @@
 		;; frame raise lock (lock AND raise == jumpto)
 		(0 t   t :class "Firefox" :instance "Navigator" :role "browser")
 		(0 t   t :class "Wine" :instance "spotify.exe")
+		(0 t   t :class "AuSceneClient" :instance "AuSceneClient")
+		(0 t   t :class "AuMailClient" :instance "AuMailClient")
 		(0 t   t :class "URxvt" :instance "irssi"))
 
 (define-frame-preference "1"
@@ -135,7 +137,13 @@
 		(run-or-raise "mplayer" '(:class "MPlayer" :instance "vdpau")))
 
 (defcommand PS3MS () ()
-		(run-or-raise "/usr/local/bin/pms-linux-1.20.412/PMS.sh" '(:class "net-pms-PMS" :instance "sun-awt-X11-XFramePeer")))
+		(run-or-raise "/usr/local/bin/PMS.sh" '(:class "net-pms-PMS" :instance "sun-awt-X11-XFramePeer")))
+
+(defcommand Hazeron () ()
+		(run-or-raise "/home/epaaj/downloads/software/ShoresOfHazeron/ShoresOfHazeron" '(:class "AuSceneClient" :instance "AuSceneClient")))
+
+(defcommand HazeronMail () ()
+		(run-or-raise "/home/epaaj/downloads/software/ShoresOfHazeron/HazeronMail" '(:class "AuMailClient" :instance "AuMailClient")))
 
 ;; INTARNETS
 (defcommand google (s)
@@ -189,8 +197,6 @@
 
 (define-key *top-map* (kbd "s-RET") "exec urxvt")
 (define-key *root-map* (kbd "RET") "exec urxvt")
-(define-key *root-map* (kbd "c") "exec urxvt")
-(define-key *root-map* (kbd "u") "uzbl")
 
 ;; sane bindings for window management
 (define-key *root-map* (kbd "h") "move-focus left")
@@ -244,6 +250,8 @@
 (define-key *top-map* (kbd "s-a") "spotify")
 (define-key *top-map* (kbd "s-m") "mplayer")
 (define-key *top-map* (kbd "s-p") "PS3MS")
+(define-key *top-map* (kbd "s-C-h") "Hazeron")
+(define-key *top-map* (kbd "s-C-H") "HazeronMail")
 
 ;; Undefine keys
 
