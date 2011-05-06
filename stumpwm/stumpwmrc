@@ -82,7 +82,7 @@
 
 (define-frame-preference "2"
 		;; frame raise lock (lock AND raise == jumpto)
-		(0 t   t :class "Lanikai" :instance "Mail"))
+		(0 t   t :class "Thunderbird" :instance "Mail"))
 
 (define-frame-preference "3"
 		;; frame raise lock (lock AND raise == jumpto)
@@ -177,8 +177,18 @@
 		(define-key m (kbd "SPC") "exec mpc toggle")
 		m))
 
+;; Games
+(defparameter *game-map*
+		(let ((m (make-sparse-keymap)))
+		(define-key m (kbd "s") "sc2")
+		(define-key m (kbd "h") "Hazeron")
+		(define-key m (kbd "H") "HazeronMail")
+		m))
+
 (define-key *root-map* (kbd "m") '*mpd-map*)
 (define-key *root-map* (kbd "C-m") '*mpd-map*)
+(define-key *root-map* (kbd "C-g") '*game-map*)
+
 
 ;; Volume
 (defcommand volume (v)
@@ -197,6 +207,7 @@
 
 (define-key *top-map* (kbd "s-RET") "exec urxvt")
 (define-key *root-map* (kbd "RET") "exec urxvt")
+(define-key *root-map* (kbd "ESC") "abort")
 
 ;; sane bindings for window management
 (define-key *root-map* (kbd "h") "move-focus left")
@@ -250,8 +261,6 @@
 (define-key *top-map* (kbd "s-a") "spotify")
 (define-key *top-map* (kbd "s-m") "mplayer")
 (define-key *top-map* (kbd "s-p") "PS3MS")
-(define-key *top-map* (kbd "s-C-h") "Hazeron")
-(define-key *top-map* (kbd "s-C-H") "HazeronMail")
 
 ;; Undefine keys
 
