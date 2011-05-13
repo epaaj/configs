@@ -1,0 +1,125 @@
+# This configuration file was written for the NEO layout. If you are using a
+# different layout, you should change it.
+
+focus_follows_mouse no
+
+# ISO 10646 = Unicode
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+
+# Use Mouse+Mod4 to drag floating windows to their wanted position
+floating_modifier Mod4
+
+# temporary path during development
+ipc-socket /tmp/nestedcons
+
+# Open empty container
+bindsym Mod4+Shift+Return open
+
+# Start terminal (Mod4+Enter)
+bindsym Mod4+Return exec /usr/bin/urxvt
+
+# Start dmenu (Mod4+p)
+bindsym Mod4+p exec /usr/bin/dmenu_run
+
+# Horizontal orientation
+bind Mod4+39 split h
+
+# Vertical orientation
+bind Mod4+52 split v
+
+# Fullscreen (Mod4+f)
+bindsym Mod4+f fullscreen
+
+# Stacking (Mod4+s)
+bind Mod4+Shift+39 layout stacking
+
+# Tabbed (Mod4+w)
+bindsym Mod4+w layout tabbed
+
+# Default (Mod4+l)
+bindsym Mod4+a layout default
+
+# toggle tiling / floating
+bindsym Mod4+Shift+space mode toggle
+
+bindsym Mod4+u level up
+#bindsym Mod4+d level down
+
+# Kill current client (Mod4+c)
+bindsym Mod4+c kill
+
+# Restore saved JSON layout
+bindsym Mod4+y restore /home/michael/i3/layout.json
+
+# Restart i3
+bindsym Mod4+Shift+c restart
+# Reload i3
+bindsym Mod4+Shift+j reload
+# Exit i3
+bindsym Mod4+Shift+l exit
+
+# Focus (Mod4+hjkl)
+#bindsym Mod4+43 prev h
+#bindsym Mod4+44 next v
+#bindsym Mod4+45 prev v
+#bindsym Mod4+46 next h
+bind Mod4+43 prev h
+bind Mod4+44 next v
+bind Mod4+45 prev v
+bind Mod4+46 next h
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Left prev h
+bindsym Mod4+Right next h
+bindsym Mod4+Down next v
+bindsym Mod4+Up prev v
+
+# Move
+bindsym Mod4+Shift+h move left
+bindsym Mod4+Shift+j move down
+bindsym Mod4+Shift+k move up
+bindsym Mod4+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym Mod4+Shift+Left move left
+bindsym Mod4+Shift+Right move right
+bindsym Mod4+Shift+Down move down
+bindsym Mod4+Shift+Up move up
+
+# Workspaces (Mod4+1/2/…)
+bindsym Mod4+1 workspace 1
+bindsym Mod4+2 workspace 2
+bindsym Mod4+3 workspace 3
+bindsym Mod4+4 workspace 4
+bindsym Mod4+5 workspace 5
+bindsym Mod4+6 workspace 6
+bindsym Mod4+7 workspace 7
+bindsym Mod4+8 workspace 8
+bindsym Mod4+9 workspace 9
+bindsym Mod4+0 workspace 10
+
+# Move to Workspaces
+bindsym Mod4+Shift+1 move workspace 1
+bindsym Mod4+Shift+2 move workspace 2
+bindsym Mod4+Shift+3 move workspace 3
+bindsym Mod4+Shift+4 move workspace 4
+bindsym Mod4+Shift+5 move workspace 5
+bindsym Mod4+Shift+6 move workspace 6
+bindsym Mod4+Shift+7 move workspace 7
+bindsym Mod4+Shift+8 move workspace 8
+bindsym Mod4+Shift+9 move workspace 9
+bindsym Mod4+Shift+0 move workspace 10
+
+
+# Colors					border		bg			fg
+client.focused				#8a00bb		#8a00bb		#dbdbdb
+bar.focused					#8a00bb		#8a00bb		#dbdbdb
+client.focused_inactive		#8a00bb		#262626		#dbdbdb
+
+client.unfocused			#262626		#262626		#dbdbdb
+bar.unfocused				#262626		#262626		#8a00bb
+
+client.urgent				#8a00bb		#8a00bb		#000000
+bar.urgent					#8a00bb		#8a00bb		#000000
+
+client.background			#3a3a3a

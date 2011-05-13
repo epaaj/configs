@@ -17,6 +17,10 @@ import errno
 from optparse import OptionParser
 
 PACKAGES = {
+    "i3": (
+        ("i3",),
+        tuple(),
+    ),
     "ncmpcpp": (
         ("ncmpcpp",),
         tuple(),
