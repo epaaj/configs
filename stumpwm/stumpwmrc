@@ -70,7 +70,7 @@
 (define-frame-preference "Default"
 		;; frame raise lock (lock AND raise == jumpto)
 		(0 t   t :class "Firefox" :instance "Navigator" :role "browser")
-		(0 t   t :class "Wine" :instance "spotify.exe")
+		(0 t   t :class "Spotify" :instance "spotify")
 		(0 t   t :class "AuSceneClient" :instance "AuSceneClient")
 		(0 t   t :class "AuMailClient" :instance "AuMailClient")
 		(0 t   t :class "URxvt" :instance "irssi"))
@@ -131,7 +131,7 @@
 		(run-or-raise "SC2.sh" '(:class "Wine" :instance "SC2.exe")))
 
 (defcommand spotify () ()
-		(run-or-raise "spotify.sh" '(:class "Wine" :instance "spotify.exe")))
+		(run-or-raise "spotify" '(:class "Spotify" :instance "spotify")))
 
 (defcommand mplayer () ()
 		(run-or-raise "mplayer" '(:class "MPlayer" :instance "vdpau")))

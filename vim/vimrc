@@ -83,6 +83,7 @@ noremap <F4> <esc>:set syntax=css<cr>
 nmap ,s :source $MYVIMRC<CR>
 nmap ,v :vs $MYVIMRC<CR>
 nmap ,t :NERDTree<CR>
+nmap ,x :!xclip %<CR>
 
 :au Filetype bash,sh set foldmarker={{{,}}}
 :au Filetype txt,log set nolist wrap lbr syntax=none
