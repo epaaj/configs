@@ -108,13 +108,13 @@ bindsym $mod+Shift+parenright move workspace 9
 bindsym $mod+Shift+equal move workspace 10
 
 # Assigning
-assign "URxvt/irssi" 1
-assign "Firefox" 2
-assign "Thunderbird" 3
-assign "Linuxdcpp" 4
+assign [class="URxvt" instance="irssi"] 1
+assign [class="Firefox"] 2
+assign [class="Thunderbird"] 3
+assign [class="Linuxdcpp"] 4
 
-assign "Spotify" 8
-assign "Skype" 9
+assign [class="Spotify"] 8
+assign [class="Skype"] 9
 
 # Volume mods (up/down/left/right)
 bindcode $mod+111 exec amixer set PCM 5+
@@ -125,7 +125,7 @@ bindcode $mod+114 exec echo lol
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# restart i3 in
 bindsym $mod+Shift+R restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
@@ -201,18 +201,39 @@ bindcode $mod+52 mode "programs"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-exec i3status | i3bar -d
+#exec i3status | i3bar -d
 
+#exec i3bar
+#bar {
+#	position top
+#	status_command i3status
+#}
+bar {
+#	output LVDS1
+#	mode dock
+#	position bottom
+	status_command i3status
+
+	colors {
+		background	#000000
+		statusline	#ffffff
+
+		focused_workspace	#dbdbdb	#8a00bb
+		active_workspace	#000000	#8a00bb
+		inactive_workspace	#ffffff	#262626
+		urgent_workspace	#000000	#8a00bb
+	}
+}
 
 # Colors					border		bg			fg
 client.focused				#8a00bb		#8a00bb		#dbdbdb
-bar.focused					#8a00bb		#8a00bb		#dbdbdb
+#bar.focused					#8a00bb		#8a00bb		#dbdbdb
 client.focused_inactive		#8a00bb		#262626		#dbdbdb
 
 client.unfocused			#262626		#262626		#dbdbdb
-bar.unfocused				#262626		#262626		#8a00bb
+#bar.unfocused				#262626		#262626		#8a00bb
 
 client.urgent				#8a00bb		#8a00bb		#000000
-bar.urgent					#8a00bb		#8a00bb		#000000
+#bar.urgent					#8a00bb		#8a00bb		#000000
 
 #client.background			#3a3a3a
