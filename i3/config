@@ -112,9 +112,13 @@ assign [class="URxvt" instance="irssi"] 1
 assign [class="Firefox"] 2
 assign [class="Thunderbird"] 3
 assign [class="Linuxdcpp"] 4
+#assign [class="Eiskaltdcpp-gtk"] 4
 
-assign [class="Spotify"] 8
-assign [class="Skype"] 9
+assign "Spotify" 8
+assign "Skype" 9
+
+
+for_window [class="Tilda"] floating enable
 
 # Volume mods (up/down/left/right)
 bindcode $mod+111 exec amixer set PCM 5+
@@ -125,7 +129,7 @@ bindcode $mod+114 exec echo lol
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
-# restart i3 in
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+R restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
@@ -180,6 +184,7 @@ bindcode 28 exec run-or-raise.sh thunderbird thunderbird
 bindcode 39 exec run-or-raise.sh skype skype
 # d
 bindcode 40 exec run-or-raise.sh linuxdcpp linuxdcpp
+#bindcode 40 exec run-or-raise.sh eiskaltdcpp-gtk eiskaltdcpp-gtk
 # i
 bindcode 31 exec run-or-raise.sh "urxvt -name irssi" urxvt irssi
 # a
@@ -202,6 +207,7 @@ bindcode $mod+52 mode "programs"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 #exec i3status | i3bar -d
+#exec i3status | i3bar -c "dzen2 -x %x -dock"
 
 #exec i3bar
 #bar {
