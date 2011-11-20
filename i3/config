@@ -18,7 +18,7 @@ focus_follows_mouse no
 #new_window normal
 
 # font for window titles. ISO 10646 = Unicode
-#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 #font -*-montecarlo-*-*-*-*-*-*-*-*-*-*-*-*
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -114,8 +114,8 @@ assign [class="Thunderbird"] 3
 assign [class="Linuxdcpp"] 4
 #assign [class="Eiskaltdcpp-gtk"] 4
 
-assign "Spotify" 8
-assign "Skype" 9
+assign [class="Spotify"] 8
+assign [class="Skype"] 9
 
 
 for_window [class="Tilda"] floating enable
