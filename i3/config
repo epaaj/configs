@@ -113,6 +113,7 @@ assign [class="Firefox"] 2
 assign [class="Thunderbird"] 3
 assign [class="Linuxdcpp"] 4
 #assign [class="Eiskaltdcpp-gtk"] 4
+#assign [class="Chromium"] 5
 
 assign [class="Spotify"] 8
 assign [class="Skype"] 9
@@ -128,6 +129,8 @@ bindcode $mod+116 exec amixer set Speaker 1-
 bindcode $mod+113 exec echo lol
 bindcode $mod+114 exec echo lol
 
+# Lock screen (Win+Escape)
+bindcode $mod+9 exec i3lock
 
 # reload the configuration file
 bindsym $mod+Shift+C reload
