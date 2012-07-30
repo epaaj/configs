@@ -19,7 +19,7 @@ from optparse import OptionParser
 PACKAGES = {
     "i3": (
         ("i3",),
-        tuple("i3/i3status.conf"),
+        ("i3/i3status.conf",),
     ),
     "ncmpcpp": (
         ("ncmpcpp",),
@@ -35,11 +35,11 @@ PACKAGES = {
     ),
     "x": (
         tuple(),
-        ("x/Xdefaults", "x/xinitrc"),
+        ("x/Xdefaults", "x/xinitrc",),
     ),
     "zsh": (
         tuple(),
-        ("zsh/zshrc", "zsh/aliasrc"),
+        ("zsh/zshrc", "zsh/aliasrc",),
     ),
 }
 
