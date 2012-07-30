@@ -116,13 +116,15 @@ assign [class="Linuxdcpp"] 4
 
 assign [class="Spotify"] 8
 assign [class="Skype"] 9
+assign [class="net-pms-PMS"] 10
 
 
 for_window [class="Tilda"] floating enable
+for_window [class="Desura"] floating enable
 
 # Volume mods (up/down/left/right)
-bindcode $mod+111 exec amixer set PCM 5+
-bindcode $mod+116 exec amixer set PCM 5-
+bindcode $mod+111 exec amixer set Speaker 1+
+bindcode $mod+116 exec amixer set Speaker 1-
 bindcode $mod+113 exec echo lol
 bindcode $mod+114 exec echo lol
 
@@ -217,8 +219,10 @@ bindcode $mod+52 mode "programs"
 bar {
 #	output LVDS1
 #	mode dock
-#	position bottom
+	position top
 	status_command i3status
+#	status_command i3status | dzen2 -dock -fg white -bg black -x 200 -ta r
+#-y 1182 -x 200 -w 1720 -ta r
 
 	colors {
 		background	#000000

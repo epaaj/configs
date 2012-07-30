@@ -1,6 +1,7 @@
 export PATH=${PATH}:/usr/local/bin:/opt/java/jre/bin/
 export EDITOR="vim"
 export WINEARCH="win32"
+export MOZ_DISABLE_PANGO=1
 
 eval `keychain --eval --nogui -Q -q id_rsa`
 
