@@ -19,7 +19,7 @@ from optparse import OptionParser
 PACKAGES = {
     "i3": (
         ("i3",),
-        tuple(),
+        tuple("i3/i3status.conf"),
     ),
     "ncmpcpp": (
         ("ncmpcpp",),
