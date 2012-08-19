@@ -129,6 +129,9 @@ bindcode $mod+116 exec amixer set Speaker 1-
 bindcode $mod+113 exec echo lol
 bindcode $mod+114 exec echo lol
 
+# Screenshot
+bindcode $mod+107 exec scrot
+
 # Lock screen (Win+Escape)
 bindcode $mod+9 exec i3lock
 
